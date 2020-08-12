@@ -24,6 +24,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
 }
 
 dependencies {
@@ -47,11 +60,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.4'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1' // DO NOT UPGRADE BECAUSE OF SUPPORTING API LEVEL 19
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.4' // DO NOT UPGRADE BECAUSE OF SUPPORTING API LEVEL 19
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
     // Dagger 2
     implementation 'com.google.dagger:dagger:2.27'
     kapt 'com.google.dagger:dagger-compiler:2.27'
