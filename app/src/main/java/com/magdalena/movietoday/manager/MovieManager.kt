@@ -11,6 +11,6 @@ class MovieManager(val api: MovieApi) {
 
     fun searchMovies(searchMovie: String): Single<MovieResponse> = api.searchMovies(searchMovie)
 
-   // fun getMovieDetails(movieId:Int) : Single<MovieDetailsResponse> = api.getMovieDetailsId(movieId)
+    fun getMovieDetails(movieId: Long): Single<MovieDetailsResponse> = api.getMovieDetailsId(movieId)
 
 }

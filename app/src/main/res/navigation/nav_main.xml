@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav"
     app:startDestination="@id/nav_movie_list">
 
     <fragment
         android:id="@+id/nav_movie_details"
         android:name="com.magdalena.movietoday.presentation.movieDetails.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment">
+        <argument
+            android:name="movieId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/nav_movie_list"
         android:name="com.magdalena.movietoday.presentation.movieList.MovieListFragment"
-        android:label="MovieListFragment" >
+        android:label="MovieListFragment">
         <action
             android:id="@+id/toMovieDetails"
             app:destination="@id/nav_movie_details" />

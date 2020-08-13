@@ -16,6 +16,6 @@ interface MovieApi {
     fun searchMovies(@Query("query") query: String): Single<MovieResponse>
 
     @GET("movie/{movie_id}")
-    fun getMovieDetailsId(@Path("movie_id") movieId:Int) : Single<MovieDetailsResponse>
+    fun getMovieDetailsId(@Path("movie_id") movieId:Long) : Single<MovieDetailsResponse>
 
 }
