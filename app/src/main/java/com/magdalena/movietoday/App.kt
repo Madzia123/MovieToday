@@ -1,10 +1,12 @@
 package com.magdalena.movietoday
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.magdalena.movietoday.di.AppComponent
+import com.magdalena.movietoday.di.ContextModule
 import com.magdalena.movietoday.di.DaggerAppComponent
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     companion object {
         lateinit var injector: AppComponent
@@ -15,7 +17,7 @@ class App : Application() {
 
         injector = DaggerAppComponent
             .builder()
-
+            .contextModule(ContextModule(this))
             .build()
         injector.inject(this)
 

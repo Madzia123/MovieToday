@@ -16,9 +16,9 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun providesDatabase(context: Context): MovieTodayDatabase {
+    fun providesDatabase(context:Context): MovieTodayDatabase {
         return Room.databaseBuilder(
-            context, MovieTodayDatabase::class.java,
+           context, MovieTodayDatabase::class.java,
             MOVIE_TODAY_DATABASE
         ).setJournalMode(RoomDatabase.JournalMode.TRUNCATE).build()
     }

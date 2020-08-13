@@ -3,7 +3,7 @@ package com.magdalena.movietoday.manager
 import com.magdalena.movietoday.database.FavoriteMovie
 import com.magdalena.movietoday.database.FavoriteMovieDao
 
-class FavoriteMovieManger(private val dao: FavoriteMovieDao) {
+class FavoriteMovieManger(val dao: FavoriteMovieDao) {
 
     fun saveFavoriteMovie(favoriteMovie: FavoriteMovie) {
         dao.saveFavoriteMovie(favoriteMovie)

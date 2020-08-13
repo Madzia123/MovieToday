@@ -9,13 +9,13 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("/movie/now_playing")
+    @GET("movie/now_playing")
     fun getMoviePlaying(): Single<MovieResponse>
 
-    @GET("/search/movie")
+    @GET("search/movie")
     fun searchMovies(@Query("query") query: String): Single<MovieResponse>
 
-    @GET("/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     fun getMovieDetailsId(@Path("movie_id") movieId:Int) : Single<MovieDetailsResponse>
 
 }

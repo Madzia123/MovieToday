@@ -7,13 +7,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestOptions
 import com.magdalena.movietoday.R
+import com.magdalena.movietoday.api.movie.Result
 import com.magdalena.movietoday.base.BaseRecyclerAdapter
 import com.magdalena.movietoday.models.MovieItem
 import com.magdalena.movietoday.utils.BASE_URL_POSTER_IMG
 import kotlinx.android.synthetic.main.item_movie_details.view.*
 import java.lang.ref.WeakReference
 
-class MovieAdapter(movieList: MutableList<MovieItem>) :
+class MovieAdapter(private val onResultClicked: (MovieItem) -> Unit) :
     BaseRecyclerAdapter<MovieItem, MovieAdapter.MovieViewHolder>() {
 
     private var listener: WeakReference<MovieListener>? = null
@@ -49,6 +50,10 @@ class MovieAdapter(movieList: MutableList<MovieItem>) :
                     FitCenter()
                 )
                 .into(movie_list_poster)
+
+            setOnClickListener {
+                onResultClicked(item)
+            }
 
         }
     }

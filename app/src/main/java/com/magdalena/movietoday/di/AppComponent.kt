@@ -9,7 +9,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RoomModule::class])
+@Component(modules = [RoomModule::class, NetworkModule::class, ContextModule::class])
 interface AppComponent {
 
     fun inject(movieDetailsViewModel: MovieDetailsViewModel)
@@ -20,6 +20,7 @@ interface AppComponent {
     @Component.Builder
     interface Builder {
         fun build(): AppComponent
+        fun contextModule(contextModule: ContextModule): Builder
     }
 
 }

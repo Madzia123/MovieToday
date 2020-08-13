@@ -4,9 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import com.magdalena.movietoday.api.NetworkMessage
 import com.magdalena.movietoday.api.movie.Result
 import com.magdalena.movietoday.database.FavoriteMovie
+import com.magdalena.movietoday.database.FavoriteMovieDao
 import com.magdalena.movietoday.di.BaseViewModel
 import com.magdalena.movietoday.manager.FavoriteMovieManger
 import com.magdalena.movietoday.manager.MovieManager
+import com.magdalena.movietoday.models.MovieItem
+import com.magdalena.movietoday.network.MovieApi
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -30,6 +33,11 @@ class MovieListViewModel : BaseViewModel() {
     init {
         getNowMovies()
     }
+
+    fun onMovieClicked(movieItem: MovieItem) {
+
+    }
+
 
     private fun getNowMovies() {
         disposables.add(

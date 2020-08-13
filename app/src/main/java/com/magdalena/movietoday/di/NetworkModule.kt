@@ -63,7 +63,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun providerMovieManger(api: MovieApi): MovieManager? {
+    fun providerMovieManger(api: MovieApi): MovieManager {
         return MovieManager(api)
     }
 
