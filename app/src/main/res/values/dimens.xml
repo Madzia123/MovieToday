@@ -11,4 +11,5 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="tag_dream">12sp</dimen>
     <dimen name="image_view_pin_code">134dp</dimen>
+    <dimen name="size_progress_bar">80dp</dimen>
 </resources>

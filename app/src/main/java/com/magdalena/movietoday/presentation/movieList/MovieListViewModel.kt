@@ -4,12 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.magdalena.movietoday.api.NetworkMessage
 import com.magdalena.movietoday.api.movie.Result
 import com.magdalena.movietoday.database.FavoriteMovie
-import com.magdalena.movietoday.database.FavoriteMovieDao
 import com.magdalena.movietoday.di.BaseViewModel
 import com.magdalena.movietoday.manager.FavoriteMovieManger
 import com.magdalena.movietoday.manager.MovieManager
 import com.magdalena.movietoday.models.MovieItem
-import com.magdalena.movietoday.network.MovieApi
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -26,12 +24,13 @@ class MovieListViewModel : BaseViewModel() {
 
     var progressShow: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
-    val movies: MutableLiveData<MutableList<Result>> = MutableLiveData()
+    val results: MutableLiveData<MutableList<Result>> = MutableLiveData()
     val favoriteMovies: MutableLiveData<MutableList<FavoriteMovie>> = MutableLiveData()
 
 
     init {
         getNowMovies()
+        getFavoriteMovies()
     }
 
     fun onMovieClicked(movieItem: MovieItem) {
@@ -39,7 +38,7 @@ class MovieListViewModel : BaseViewModel() {
     }
 
 
-    private fun getNowMovies() {
+    fun getNowMovies() {
         disposables.add(
             movieManager.nowPlayingMovie()
                 .subscribeOn(Schedulers.io())
@@ -50,7 +49,7 @@ class MovieListViewModel : BaseViewModel() {
                     progressShow.value = false
                 }
                 .subscribe({
-                    movies.postValue(it.results)
+                    results.postValue(it.results)
                 }, {
 
                     if (it is HttpException) {
@@ -73,7 +72,7 @@ class MovieListViewModel : BaseViewModel() {
                     progressShow.value = false
                 }
                 .subscribe({
-                    movies.postValue(it.results)
+                    results.postValue(it.results)
                 }, {
 
                     if (it is HttpException) {
@@ -92,11 +91,6 @@ class MovieListViewModel : BaseViewModel() {
                 favoriteMovieManger.saveFavoriteMovie(favoriteMovie)
             }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    progressShow.value = true
-                }.doOnTerminate {
-                    progressShow.value = false
-                }
                 .subscribe({
 
                 }, {
@@ -107,17 +101,12 @@ class MovieListViewModel : BaseViewModel() {
         )
     }
 
-    fun deleteFavoriteMovie(movieId: Int) {
+    fun deleteFavoriteMovie(movieId: Long) {
         disposables.add(
             Observable.fromCallable {
                 favoriteMovieManger.deleteFavoriteMovie(movieId)
             }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    progressShow.value = true
-                }.doOnTerminate {
-                    progressShow.value = false
-                }
                 .subscribe({
 
                 }, {

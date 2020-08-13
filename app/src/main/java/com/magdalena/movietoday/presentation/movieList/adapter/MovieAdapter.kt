@@ -2,6 +2,7 @@ package com.magdalena.movietoday.presentation.movieList.adapter
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.FitCenter
@@ -26,7 +27,21 @@ class MovieAdapter(private val onResultClicked: (MovieItem) -> Unit) :
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    override fun onBindViewHolder(holder: MovieViewHolder, item: MovieItem) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+        MovieViewHolder(
+            inflate(
+                parent,
+                R.layout.item_movie_details
+            )
+        )
+
+    fun clearList() {
+        data.clear()
+    }
+
+    override fun onBindViewHolder(holder: MovieViewHolder, item: MovieItem, position: Int) {
+
         holder.itemView.apply {
             movie_title.text = item.movie.originalTitle
             movie_release.text = item.movie.releaseDate
@@ -38,6 +53,7 @@ class MovieAdapter(private val onResultClicked: (MovieItem) -> Unit) :
                 .placeholder(R.drawable.placeholder)
                 .dontAnimate()
                 .error(R.drawable.placeholder)
+
 
             val fullNameMoviePath = BASE_URL_POSTER_IMG + item.movie.posterPath
 
@@ -52,19 +68,19 @@ class MovieAdapter(private val onResultClicked: (MovieItem) -> Unit) :
                 .into(movie_list_poster)
 
             setOnClickListener {
-                onResultClicked(item)
+                //  onResultClicked(item)
             }
 
+
+            movie_favorite.setOnClickListener {
+                val gendersNameCheckBox = it as CheckBox
+                item.isFavorite = gendersNameCheckBox.isChecked
+                data[position].isFavorite = gendersNameCheckBox.isChecked
+                notifyDataSetChanged()
+            }
+
+            listener?.get()?.isFavoriteMovie(movie_favorite.isChecked, item.movie.id)
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
-        MovieViewHolder(
-            inflate(
-                parent,
-                R.layout.item_movie_details
-            )
-        )
-
 
 }

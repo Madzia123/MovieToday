@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorBackground"
     android:layout_height="match_parent">
 
 
@@ -11,12 +12,13 @@
         android:id="@+id/movie_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/search_movie"
-        android:textColor="@color/black"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorSelectedLight"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,10 +34,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search" />
 
+
+    <ProgressBar
+
+        android:id="@+id/progress_bar_movie"
+        android:layout_width="@dimen/size_progress_bar"
+        android:layout_height="@dimen/size_progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/movie_list" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movie_list"
-        android:layout_width="409dp"
-        android:layout_height="663dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

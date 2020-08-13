@@ -11,5 +11,5 @@ data class FavoriteMovie(
     val id: Int? = null,
 
     @ColumnInfo
-    val movieId: Int
+    val movieId: Long
 )

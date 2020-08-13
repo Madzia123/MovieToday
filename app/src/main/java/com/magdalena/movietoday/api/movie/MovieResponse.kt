@@ -4,14 +4,14 @@ package com.magdalena.movietoday.api.movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
-    @SerializedName("dates")
-    val dates: Dates,
-    @SerializedName("page")
-    val page: Int,
     @SerializedName("results")
     val results: MutableList<Result>,
-    @SerializedName("total_pages")
-    val totalPages: Int,
+    @SerializedName("page")
+    val page: Long,
     @SerializedName("total_results")
-    val totalResults: Int
+    val totalResults: Long,
+    @SerializedName("dates")
+    val dates: Dates,
+    @SerializedName("total_pages")
+    val totalPages: Long
 )

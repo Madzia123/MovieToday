@@ -9,7 +9,7 @@ class FavoriteMovieManger(val dao: FavoriteMovieDao) {
         dao.saveFavoriteMovie(favoriteMovie)
     }
 
-    fun deleteFavoriteMovie(movieId: Int) {
+    fun deleteFavoriteMovie(movieId: Long) {
         dao.deleteFavoriteMovie(movieId)
     }
 

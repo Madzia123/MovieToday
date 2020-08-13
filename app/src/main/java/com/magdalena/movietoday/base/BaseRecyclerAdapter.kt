@@ -8,25 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<ITEM, VH : RecyclerView.ViewHolder> : RecyclerView.Adapter<VH>() {
 
-    open var data: List<ITEM> = ArrayList()
+    open var data: MutableList<ITEM> = mutableListOf()
         set(items) {
             field = items
             notifyDataSetChanged()
         }
 
-    private fun getItem(position: Int): ITEM = data[position]
+    fun getItem(position: Int): ITEM = data[position]
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        onBindViewHolder(holder, getItem(position))
+        onBindViewHolder(holder, getItem(position), position)
     }
 
-    protected abstract fun onBindViewHolder(holder: VH, item: ITEM)
-
+    abstract fun onBindViewHolder(holder: VH, item: ITEM, position: Int)
     override fun getItemCount() = data.size
 
     protected fun inflate(parent: ViewGroup, @LayoutRes res: Int): View {
-        return LayoutInflater.from(parent.context).inflate(res, parent, false)
+        return LayoutInflater.from(parent.context)
+            .inflate(res, parent, false)
     }
-
 
 }
