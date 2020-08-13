@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorPrimary">#421c65</color>
+    <color name="colorPrimaryDark">#421c65</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorBackground">#543274</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="snow">#f9f9f9</color>
+    <color name="persian_indigo">#421c65</color>
+    <color name="manatee">#979797</color>
+    <color name="lapis_lazuli">#3b5998</color>
+    <color name="outer_space">#424242</color>
+    <color name="bleu_de_france">#4099ff</color>
+    <color name="davy_grey">#B2B2B2</color>
+    <color name="colorSelectedLight">#aaaa</color>
+    <color name="colorSelectedDark">#888888</color>
+    <color name="colorHappy">#F1C40F</color>
+    <color name="colorAngry">#E74C3C</color>
+    <color name="colorScared">#2980B9</color>
+    <color name="colorSad">#95A5A6</color>
+    <color name="colorNone">#ECF0F1</color>
+    <color name="colorError">#f4511e</color>
+    <color name="colorGoogle">#d34836</color>
+    <color name="light_pink">#fc9acb</color>
+    <color name="dark_pink_one">#e62875</color>
+    <color name="color_pink">#E91E63</color>
 </resources>
