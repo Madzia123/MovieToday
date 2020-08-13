@@ -14,9 +14,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.magdalena.movietoday.R
 import com.magdalena.movietoday.api.movieDetails.MovieDetailsResponse
 import com.magdalena.movietoday.base.BaseFragment
+import com.magdalena.movietoday.database.FavoriteMovie
 import com.magdalena.movietoday.presentation.movieList.MovieListViewModel
 import com.magdalena.movietoday.presentation.movieList.adapter.MovieAdapter
 import com.magdalena.movietoday.utils.BASE_URL_POSTER_IMG
+import kotlinx.android.synthetic.main.content_fragment_details.*
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.item_movie_details.view.*
 
@@ -42,6 +44,19 @@ class MovieDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        fab_favorite_movie.setOnClickListener {
+            isFavoriteMovie = !isFavoriteMovie
+            val movieId = args.movieId
+
+            if (isFavoriteMovie){
+                fab_favorite_movie.setBackgroundResource(R.drawable.ic_favorite)
+                val favoriteMovie = FavoriteMovie(movieId = movieId)
+                viewModel.saveFavoriteMovie(favoriteMovie)
+            }else {
+                fab_favorite_movie.setBackgroundResource(R.drawable.ic_un_favorite)
+                viewModel.deleteFavoriteMovie(movieId)
+            }
+        }
     }
 
     private fun setupObservers() {
@@ -63,6 +78,9 @@ class MovieDetailsFragment : BaseFragment() {
     private fun setMovieDetails(result: MovieDetailsResponse) {
         toolbarTitle = result.originalTitle
 
+        movie_title.text = result.originalTitle
+        movie_des.text = result.overview
+        movie_rate.text = result.popularity.toString()
 
         val options = RequestOptions()
             .placeholder(R.drawable.placeholder)
