@@ -34,6 +34,7 @@ class MovieListViewModel : BaseViewModel() {
     }
 
     fun onMovieClicked(movieItem: MovieItem) {
+        navigate?.navigate(MovieListFragmentDirections.toMovieDetails(movieItem.movie.id))
 
     }
 

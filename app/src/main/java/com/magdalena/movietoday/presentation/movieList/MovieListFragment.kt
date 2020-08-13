@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 class MovieListFragment : BaseFragment(), MovieListener {
 
     private lateinit var viewModel: MovieListViewModel
-    private lateinit var adpter: MovieAdapter
+    private lateinit var movieAdapter: MovieAdapter
 
     private var movieList: MutableList<MovieItem> = mutableListOf()
     private var resultMovies: MutableList<Result> = mutableListOf()
@@ -56,14 +56,20 @@ class MovieListFragment : BaseFragment(), MovieListener {
     }
 
     private fun setupRecycler() {
-        adpter = MovieAdapter(viewModel::onMovieClicked)
+        movieAdapter = MovieAdapter(viewModel::onMovieClicked)
         movie_list.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = adpter
+            adapter = movieAdapter
         }
 
-        adpter.setListenerMovie(this)
+        movieAdapter.setListenerMovie(this)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        toolbarTitleRes = R.string.search_movie
+        navigationBack = false
     }
 
     private fun setupObservers() {
@@ -80,12 +86,10 @@ class MovieListFragment : BaseFragment(), MovieListener {
             })
 
             results.observe(viewLifecycleOwner, Observer {
-                clearData()
                 resultMovies.addAll(it)
 
-                Toast.makeText(requireContext(), it.size.toString(), Toast.LENGTH_LONG).show()
                 movieList = initMovieList(resultMovies, favoriteMovieId)
-                adpter.data = movieList
+                movieAdapter.data = movieList
             })
 
 
@@ -110,17 +114,17 @@ class MovieListFragment : BaseFragment(), MovieListener {
         return movies
     }
 
-    fun clearData() {
+    private fun clearData() {
         movieList.clear()
-        adpter.clearList()
+        movieAdapter.clearList()
     }
 
     override fun isFavoriteMovie(isFavorite: Boolean, movieId: Long) {
 
-        if (isFavorite){
+        if (isFavorite) {
             val favoriteMovie = FavoriteMovie(movieId = movieId)
             viewModel.saveFavoriteMovie(favoriteMovie)
-        }else {
+        } else {
             viewModel.deleteFavoriteMovie(movieId = movieId)
         }
 

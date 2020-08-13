@@ -68,7 +68,7 @@ class MovieAdapter(private val onResultClicked: (MovieItem) -> Unit) :
                 .into(movie_list_poster)
 
             setOnClickListener {
-                //  onResultClicked(item)
+                onResultClicked(item)
             }
 
 
