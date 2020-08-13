@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieToday</string>
+    <string name="search_movie">Wyszukaj film</string>
 </resources>
