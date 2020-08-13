@@ -2,6 +2,7 @@ package com.magdalena.movietoday.di
 
 import com.google.gson.Gson
 import com.magdalena.movietoday.BuildConfig
+import com.magdalena.movietoday.manager.MovieManager
 import com.magdalena.movietoday.network.MovieApi
 import com.magdalena.movietoday.utils.API_KEY
 import com.magdalena.movietoday.utils.BASE_URL
@@ -40,8 +41,8 @@ class NetworkModule {
             val original = chain.request()
 
             val urlHttp =
-                original.url.newBuilder().addQueryParameter("api_key", API_KEY).build()
-            original.url.newBuilder().build()
+                original.url().newBuilder().addQueryParameter("api_key", API_KEY).build()
+            original.url().newBuilder().build()
 
             val request = original.newBuilder()
                 .url(urlHttp)
@@ -59,6 +60,11 @@ class NetworkModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .callFactory(httpClientBuilder.build())
             .build().create(MovieApi::class.java)
+    }
+
+    @Provides
+    fun providerMovieManger(api: MovieApi): MovieManager? {
+        return MovieManager(api)
     }
 
 }
