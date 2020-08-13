@@ -19,6 +19,6 @@ interface FavoriteMovieDao {
     fun getFavoriteMovieIds(): MutableList<FavoriteMovie>
 
     @Query("SELECT * FROM favorite_movie WHERE movieId = :movieId LIMIT 1")
-    fun getFavoriteMovie(movieId: Int): LiveData<FavoriteMovie?>
+    fun getFavoriteMovie(movieId: Long): LiveData<FavoriteMovie?>
 
 }

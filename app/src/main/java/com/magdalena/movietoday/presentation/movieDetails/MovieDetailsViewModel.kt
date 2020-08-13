@@ -82,4 +82,20 @@ class MovieDetailsViewModel : BaseViewModel() {
                 )
         )
     }
+
+    fun getFavoriteMovie(movieId: Long) {
+        disposables.add(
+            Observable.fromCallable {
+                favoriteMovieManger.getFavoriteMovie(movieId)
+            }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
+                }, {
+
+
+                }
+                )
+        )
+    }
 }

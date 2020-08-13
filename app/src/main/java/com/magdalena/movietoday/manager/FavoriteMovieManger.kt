@@ -13,5 +13,9 @@ class FavoriteMovieManger(val dao: FavoriteMovieDao) {
         dao.deleteFavoriteMovie(movieId)
     }
 
+    fun getFavoriteMovie(movieId: Long){
+        dao.getFavoriteMovie(movieId)
+    }
+
     fun getFavoriteMovieId():MutableList<FavoriteMovie> = dao.getFavoriteMovieIds()
 }

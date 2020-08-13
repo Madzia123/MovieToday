@@ -47,7 +47,6 @@ class MovieDetailsFragment : BaseFragment() {
         fab_favorite_movie.setOnClickListener {
             isFavoriteMovie = !isFavoriteMovie
             val movieId = args.movieId
-
             if (isFavoriteMovie){
                 fab_favorite_movie.setBackgroundResource(R.drawable.ic_favorite)
                 val favoriteMovie = FavoriteMovie(movieId = movieId)
@@ -66,6 +65,15 @@ class MovieDetailsFragment : BaseFragment() {
             result.observe(viewLifecycleOwner, Observer {
                 setMovieDetails(it)
             })
+
+        }
+    }
+
+    private fun setActionFavoriteMovie(isFavoriteMovie: Boolean){
+        if (isFavoriteMovie){
+            fab_favorite_movie.setBackgroundResource(R.drawable.ic_favorite)
+        }else {
+            fab_favorite_movie.setBackgroundResource(R.drawable.ic_un_favorite)
 
         }
     }
