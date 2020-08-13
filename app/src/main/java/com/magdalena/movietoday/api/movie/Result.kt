@@ -1,4 +1,4 @@
-package com.magdalena.movietoday.api.nowPlaying
+package com.magdalena.movietoday.api.movie
 
 
 import com.google.gson.annotations.SerializedName

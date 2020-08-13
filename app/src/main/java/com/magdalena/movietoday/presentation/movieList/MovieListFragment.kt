@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.magdalena.movietoday.R
 import com.magdalena.movietoday.base.BaseFragment
 
 class MovieListFragment : BaseFragment() {
@@ -13,7 +14,9 @@ class MovieListFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+
+        val view = inflater.inflate(R.layout.fragment_movie_list, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

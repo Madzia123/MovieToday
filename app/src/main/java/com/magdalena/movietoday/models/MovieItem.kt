@@ -1,6 +1,6 @@
 package com.magdalena.movietoday.models
 
-import com.magdalena.movietoday.api.nowPlaying.Result
+import com.magdalena.movietoday.api.movie.Result
 
 data class MovieItem(
     val movie: Result,
