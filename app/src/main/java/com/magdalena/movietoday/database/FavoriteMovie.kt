@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class FavoriteMovie(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    val id: Long? = null,
+    val id: Int? = null,
 
     @ColumnInfo
-    val movieId: Long
+    val movieId: Int
 )
